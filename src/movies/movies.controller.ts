@@ -6,7 +6,9 @@ import {
     Patch, 
     Post, 
     Body, 
-    Query
+    Query,
+    Req,
+    Res
 } from '@nestjs/common';
 import { ParamsTokenFactory } from '@nestjs/core/pipes';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -19,7 +21,7 @@ export class MoviesController {
     constructor(private readonly moviesService: MoviesService) {}
     
     @Get()
-    getAll() {
+    getAll(@Req() req, @Res() res): Movie[] {
         return this.moviesService.getAll();
     }
 
